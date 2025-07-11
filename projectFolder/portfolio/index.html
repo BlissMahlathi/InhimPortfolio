@@ -34,9 +34,29 @@
   <body>
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-primary text-primary-foreground px-4 py-2 rounded shadow-lg transition-all"
-      >Skip to main content</a
+      style="
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 50;
+        background-color: #5B21B6;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease-in-out;
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+      "
+      onfocus="this.style.clip='auto'; this.style.height='auto'; this.style.width='auto'; this.style.overflow='visible';"
+      onblur="this.style.clip='rect(1px, 1px, 1px, 1px)'; this.style.height='1px'; this.style.width='1px'; this.style.overflow='hidden';"
     >
+      Skip to main content
+    </a>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
