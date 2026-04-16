@@ -1,83 +1,85 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, User, Clock } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
 
 const BlogPage = () => {
   const blogPosts = [
     {
       title: "The Future of AI in South African Business Development",
       excerpt:
-        "Exploring how artificial intelligence is revolutionizing the way we build software solutions for local businesses.",
+        "How practical AI integration is helping local teams reduce delivery cycles and improve quality of execution.",
       author: "Hlulani Bliss Mahlathi",
       date: "2025-01-10",
       readTime: "5 min read",
-      category: "AI & Technology",
+      category: "AI and Technology",
       image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=680&h=420&fit=crop",
     },
     {
       title: "Why Every South African SME Needs a Digital Presence",
       excerpt:
-        "Breaking down the barriers and explaining why digital transformation is crucial for small and medium enterprises in SA.",
+        "A practical framework for owners building stronger demand generation through digital channels.",
       author: "Hlulani Bliss Mahlathi",
       date: "2025-01-08",
       readTime: "7 min read",
       category: "Business Strategy",
       image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=680&h=420&fit=crop",
     },
     {
       title: "Building Responsive Websites: A Complete Guide",
       excerpt:
-        "Learn the best practices for creating websites that work perfectly across all devices and screen sizes.",
+        "Design and engineering patterns for fast, reliable interfaces across mobile, tablet, and desktop.",
       author: "Hlulani Bliss Mahlathi",
       date: "2025-01-05",
       readTime: "10 min read",
       category: "Web Development",
       image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=680&h=420&fit=crop",
     },
     {
       title: "Database Design Best Practices for Business Applications",
       excerpt:
-        "Essential principles for designing efficient, scalable databases that grow with your business needs.",
+        "Key architecture decisions that improve reliability, maintainability, and analytics readiness.",
       author: "Hlulani Bliss Mahlathi",
       date: "2025-01-03",
       readTime: "8 min read",
       category: "Backend Development",
       image:
-        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=680&h=420&fit=crop",
     },
     {
       title: "The Rise of Progressive Web Apps in Africa",
       excerpt:
-        "How PWAs are bridging the gap between web and mobile experiences in emerging markets.",
+        "Why PWAs remain one of the strongest channels for affordable mobile-grade user experiences.",
       author: "Hlulani Bliss Mahlathi",
       date: "2025-01-01",
       readTime: "6 min read",
       category: "Mobile Development",
       image:
-        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=680&h=420&fit=crop",
     },
     {
       title: "Cybersecurity Essentials for Small Businesses",
       excerpt:
-        "Protecting your business data and customer information with practical security measures.",
+        "Practical security controls every growing company should implement before scaling its operations.",
       author: "Hlulani Bliss Mahlathi",
       date: "2024-12-28",
       readTime: "9 min read",
       category: "Security",
       image:
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=680&h=420&fit=crop",
     },
   ];
 
+  const [featuredPost, ...otherPosts] = blogPosts;
   const categories = [
     "All",
-    "AI & Technology",
+    "AI and Technology",
     "Business Strategy",
     "Web Development",
     "Backend Development",
@@ -88,33 +90,41 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <Badge variant="outline" className="mb-4">
-                Our Blog
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Insights & Updates
-                <span className="block text-primary">from Our Team</span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Stay up-to-date with the latest trends in technology, business
-                development, and digital transformation insights from our
-                development team.
+
+      <main className="pt-24">
+        <section className="section-shell">
+          <div className="absolute inset-0 mesh-background opacity-70" />
+          <div className="relative z-10 container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-4xl text-center"
+            >
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary/85">
+                Blog
               </p>
-            </div>
+              <h1 className="text-4xl font-bold leading-tight text-foreground md:text-6xl">
+                Practical insights for teams
+                <span className="headline-gradient"> building digital leverage</span>
+              </h1>
+              <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                Strategy, product, and engineering perspectives from our work
+                with South African businesses and growth-focused teams.
+              </p>
+            </motion.div>
           </div>
         </section>
 
-        {/* Category Filter */}
-        <section className="py-8 border-b">
+        <section className="pb-12">
           <div className="container mx-auto px-6">
-            <div className="flex flex-wrap gap-4 justify-center">
-              {categories.map((category) => (
-                <Button key={category} variant="outline" size="sm">
+            <div className="flex flex-wrap justify-center gap-2">
+              {categories.map((category, index) => (
+                <Button
+                  key={category}
+                  variant={index === 0 ? "hero" : "premium"}
+                  size="sm"
+                >
                   {category}
                 </Button>
               ))}
@@ -122,96 +132,150 @@ const BlogPage = () => {
           </div>
         </section>
 
-        {/* Blog Posts */}
-        <section className="py-20">
+        <section className="pb-24">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post, index) => (
-                <Card
-                  key={index}
-                  className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="relative overflow-hidden">
+            <motion.article
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55 }}
+            >
+              <Card className="glass-card section-ring overflow-hidden rounded-3xl border-border/70">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]">
+                  <div className="min-h-[280px]">
                     <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      src={featuredPost.image}
+                      alt={featuredPost.title}
+                      className="h-full w-full object-cover"
                     />
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="secondary" className="bg-background/90">
-                        {post.category}
-                      </Badge>
-                    </div>
                   </div>
 
-                  <CardHeader>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
-                      {post.title}
-                    </CardTitle>
-                  </CardHeader>
-
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4 line-clamp-3">
-                      {post.excerpt}
+                  <div className="p-6 md:p-8">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/85">
+                      Featured
+                    </p>
+                    <h2 className="mt-3 text-3xl font-bold text-foreground">
+                      {featuredPost.title}
+                    </h2>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {featuredPost.excerpt}
                     </p>
 
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center">
-                          <User className="w-4 h-4 mr-1" />
+                    <div className="mt-5 flex flex-wrap gap-4 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                      <span className="flex items-center">
+                        <User className="mr-1 h-3.5 w-3.5" />
+                        {featuredPost.author}
+                      </span>
+                      <span className="flex items-center">
+                        <Calendar className="mr-1 h-3.5 w-3.5" />
+                        {new Date(featuredPost.date).toLocaleDateString()}
+                      </span>
+                      <span className="flex items-center">
+                        <Clock className="mr-1 h-3.5 w-3.5" />
+                        {featuredPost.readTime}
+                      </span>
+                    </div>
+
+                    <div className="mt-6">
+                      <Button variant="hero" size="sm" className="group">
+                        Read Article
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </motion.article>
+
+            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {otherPosts.map((post, index) => (
+                <motion.article
+                  key={post.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                >
+                  <Card className="glass-card section-ring h-full overflow-hidden rounded-3xl border-border/70">
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                      <div className="absolute left-4 top-4 rounded-full border border-border/70 bg-background/75 px-3 py-1 text-xs font-semibold text-primary">
+                        {post.category}
+                      </div>
+                    </div>
+
+                    <CardHeader>
+                      <CardTitle className="text-xl text-foreground">{post.title}</CardTitle>
+                    </CardHeader>
+
+                    <CardContent>
+                      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="mb-5 space-y-2 text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                        <p className="flex items-center">
+                          <User className="mr-1 h-3.5 w-3.5" />
                           {post.author}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="flex items-center">
+                            <Calendar className="mr-1 h-3.5 w-3.5" />
+                            {new Date(post.date).toLocaleDateString()}
+                          </span>
+                          <span className="flex items-center">
+                            <Clock className="mr-1 h-3.5 w-3.5" />
+                            {post.readTime}
+                          </span>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        {new Date(post.date).toLocaleDateString()}
-                      </div>
-                      <div className="flex items-center">
-                        <Clock className="w-4 h-4 mr-1" />
-                        {post.readTime}
-                      </div>
-                    </div>
-
-                    <Button variant="outline" className="w-full group/btn">
-                      Read More
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </CardContent>
-                </Card>
+                      <Button variant="premium" className="group w-full" size="sm">
+                        Read More
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.article>
               ))}
-            </div>
-
-            {/* Load More */}
-            <div className="text-center mt-12">
-              <Button size="lg" variant="outline">
-                Load More Posts
-              </Button>
             </div>
           </div>
         </section>
 
-        {/* Newsletter Signup */}
-        <section className="py-20 bg-gradient-to-r from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter and get the latest insights on
-              technology and business development.
-            </p>
-            <div className="max-w-md mx-auto flex gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-md border border-input bg-background"
-              />
-              <Button>Subscribe</Button>
-            </div>
+        <section className="pb-24">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="section-ring rounded-3xl border border-border/70 bg-card/45 p-8 text-center"
+            >
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+                Get our best insights in your inbox
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                Monthly breakdowns on digital growth, product execution, and
+                practical engineering decisions.
+              </p>
+
+              <div className="mx-auto mt-6 flex max-w-lg flex-col gap-3 sm:flex-row">
+                <Input
+                  type="email"
+                  placeholder="you@company.com"
+                  className="border-border/70 bg-background/35"
+                />
+                <Button variant="hero">Subscribe</Button>
+              </div>
+            </motion.div>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );

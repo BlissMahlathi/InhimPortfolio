@@ -1,214 +1,259 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   ArrowRight,
-  Globe,
-  Smartphone,
-  Database,
+  CheckCircle2,
   Code2,
+  Database,
+  Globe,
   Palette,
   Settings,
+  Smartphone,
+  Sparkles,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
 
 const ServicesPage = () => {
   const services = [
     {
       icon: Globe,
-      title: "Web Development",
+      title: "Revenue Websites",
       description:
-        "Custom websites and web applications built with modern technologies like React, Next.js, and TypeScript.",
+        "Premium websites designed to position your offer clearly and convert high-intent visitors into leads.",
       features: [
-        "Responsive Design",
-        "SEO Optimized",
-        "Fast Performance",
-        "Modern UI/UX",
+        "Strategic messaging",
+        "Conversion-first layouts",
+        "SEO fundamentals",
+        "Performance optimization",
       ],
-      pricing: "R2,000 - R3,500",
-      timeline: "2-6 weeks",
+      pricing: "From R2,500",
+      timeline: "2-4 weeks",
     },
     {
       icon: Smartphone,
-      title: "Mobile Solutions",
+      title: "Product Interfaces",
       description:
-        "Progressive web apps and mobile-friendly solutions that work seamlessly across all devices.",
+        "Polished responsive interfaces for customer portals, apps, and internal tools that teams enjoy using.",
       features: [
-        "Cross-Platform",
-        "Offline Capable",
-        "Push Notifications",
-        "App Store Ready",
+        "Responsive system UI",
+        "Accessibility standards",
+        "Interaction design",
+        "Component libraries",
       ],
-      pricing: "R3,600 - R5,000",
-      timeline: "4-8 weeks",
+      pricing: "From R3,800",
+      timeline: "3-5 weeks",
     },
     {
       icon: Database,
-      title: "Backend & APIs",
+      title: "Backend Integrations",
       description:
-        "Robust backend systems, APIs, and database solutions to power your applications.",
+        "Secure APIs and data workflows that connect your website or product to real business operations.",
       features: [
-        "REST APIs",
-        "Database Design",
-        "Cloud Integration",
-        "Security First",
+        "RESTful APIs",
+        "Database architecture",
+        "Automation pipelines",
+        "Security hardening",
       ],
-      pricing: "R5,000 - R7,500",
+      pricing: "From R5,500",
       timeline: "3-6 weeks",
     },
     {
       icon: Code2,
-      title: "Custom Software",
+      title: "Custom Platforms",
       description:
-        "Tailored software solutions to streamline your business processes and boost productivity.",
+        "Tailored systems for booking, inventory, CRM, and internal workflows that reduce operational friction.",
       features: [
-        "Process Automation",
-        "Integration",
-        "Scalable Architecture",
-        "Maintenance",
+        "Role-based dashboards",
+        "Business logic automation",
+        "Scalable architecture",
+        "Documentation and handover",
       ],
-      pricing: "R8,000 - R12,000",
-      timeline: "6-12 weeks",
+      pricing: "From R8,500",
+      timeline: "5-10 weeks",
     },
     {
       icon: Palette,
-      title: "UI/UX Design",
+      title: "UX and Brand Systems",
       description:
-        "Beautiful, user-friendly interfaces that convert visitors into customers.",
+        "A cohesive design language across pages and products so every touchpoint feels unmistakably yours.",
       features: [
-        "User Research",
-        "Wireframing",
-        "Prototyping",
-        "Design Systems",
+        "Experience mapping",
+        "Visual direction",
+        "Prototype validation",
+        "Reusable UI standards",
       ],
-      pricing: "R2,000 - R3,500",
+      pricing: "From R3,000",
       timeline: "2-4 weeks",
     },
     {
       icon: Settings,
-      title: "Digital Organization",
+      title: "Workflow Optimization",
       description:
-        "Help businesses organize their digital workflows and improve operational efficiency.",
+        "Digital process improvement to simplify team operations and increase day-to-day execution speed.",
       features: [
-        "Workflow Optimization",
-        "Tool Integration",
-        "Training",
-        "Support",
+        "Process diagnostics",
+        "Tool integration",
+        "Automation mapping",
+        "Team enablement",
       ],
-      pricing: "R12,000+ (Tailored)",
-      timeline: "1-3 weeks",
+      pricing: "Tailored scope",
+      timeline: "Based on complexity",
+    },
+  ];
+
+  const deliveryModes = [
+    {
+      title: "Project Sprint",
+      text: "Ideal for clearly scoped outcomes like a website, campaign page, or MVP module.",
+    },
+    {
+      title: "Embedded Partner",
+      text: "Ongoing monthly collaboration for roadmap execution, optimization, and growth iterations.",
+    },
+    {
+      title: "Advisory and Rescue",
+      text: "Architecture reviews, turnaround plans, and delivery guidance for stalled digital initiatives.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <Badge variant="outline" className="mb-4">
-                Our Services
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Comprehensive Digital
-                <span className="block text-primary">
-                  Solutions for Business
-                </span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                From custom websites to complex software systems, we provide
-                end-to-end digital solutions that transform how your business
-                operates and grows.
+
+      <main className="pt-24">
+        <section className="section-shell">
+          <div className="absolute inset-0 mesh-background opacity-70" />
+          <div className="relative z-10 container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-4xl text-center"
+            >
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary/85">
+                Services
               </p>
-            </div>
+              <h1 className="text-4xl font-bold leading-tight text-foreground md:text-6xl">
+                End-to-end digital execution
+                <span className="headline-gradient"> built for business impact</span>
+              </h1>
+              <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                From positioning to production, we design and engineer digital
+                systems that drive revenue, improve efficiency, and scale with
+                your team.
+              </p>
+            </motion.div>
           </div>
         </section>
 
-        {/* Services Grid */}
-        <section className="py-20">
+        <section className="pb-24">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <Card
-                  key={index}
-                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 hover:border-primary/20"
-                >
-                  <CardHeader>
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <CardTitle className="text-center text-xl">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-6 text-center">
-                      {service.description}
-                    </p>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {services.map((service, index) => {
+                const Icon = service.icon;
 
-                    <div className="space-y-4 mb-6">
-                      <div>
-                        <h4 className="font-semibold mb-2">Key Features:</h4>
-                        <ul className="space-y-1">
-                          {service.features.map((feature, idx) => (
-                            <li
-                              key={idx}
-                              className="text-sm text-muted-foreground flex items-center"
-                            >
-                              <ArrowRight className="w-3 h-3 mr-2 text-primary" />
+                return (
+                  <motion.article
+                    key={service.title}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.45, delay: index * 0.05 }}
+                  >
+                    <Card className="glass-card section-ring h-full rounded-3xl border-border/70">
+                      <CardHeader className="pb-4">
+                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/16 text-primary">
+                          <Icon className="h-6 w-6" />
+                        </div>
+
+                        <div className="mb-4 flex items-center justify-between gap-3">
+                          <span className="rounded-full border border-border/70 bg-background/35 px-3 py-1 text-xs text-muted-foreground">
+                            {service.timeline}
+                          </span>
+                          <span className="rounded-full bg-primary/16 px-3 py-1 text-xs font-semibold text-primary">
+                            {service.pricing}
+                          </span>
+                        </div>
+
+                        <CardTitle className="text-xl text-card-foreground">{service.title}</CardTitle>
+                      </CardHeader>
+
+                      <CardContent>
+                        <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                          {service.description}
+                        </p>
+
+                        <ul className="space-y-2">
+                          {service.features.map((feature) => (
+                            <li key={feature} className="flex items-center text-sm text-muted-foreground">
+                              <CheckCircle2 className="mr-2 h-4 w-4 shrink-0 text-primary" />
                               {feature}
                             </li>
                           ))}
                         </ul>
-                      </div>
-
-                      <div className="flex justify-between items-center pt-4 border-t">
-                        <div>
-                          <p className="text-sm text-muted-foreground">
-                            Starting from
-                          </p>
-                          <p className="font-bold text-primary">
-                            {service.pricing}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-sm text-muted-foreground">
-                            Timeline
-                          </p>
-                          <p className="font-semibold">{service.timeline}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <Button className="w-full group">
-                      Get Quote
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+                      </CardContent>
+                    </Card>
+                  </motion.article>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Contact us today to discuss your project requirements and get a
-              custom quote.
-            </p>
-            <Button size="lg" className="group">
-              Contact Us Today
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+        <section className="pb-24">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="section-ring rounded-3xl border border-border/70 bg-card/45 p-8"
+            >
+              <div className="text-center">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary/85">
+                  Engagement Models
+                </p>
+                <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+                  Work with us in the format that suits your growth stage
+                </h2>
+              </div>
+
+              <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+                {deliveryModes.map((mode, index) => (
+                  <motion.article
+                    key={mode.title}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.4, delay: index * 0.06 }}
+                    className="rounded-2xl border border-border/70 bg-background/35 p-5"
+                  >
+                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/18 text-primary">
+                      <Sparkles className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">{mode.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {mode.text}
+                    </p>
+                  </motion.article>
+                ))}
+              </div>
+
+              <div className="mt-8 text-center">
+                <Button size="lg" variant="hero" className="group" asChild>
+                  <a href="/#contact">
+                    Book a Strategy Call
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );

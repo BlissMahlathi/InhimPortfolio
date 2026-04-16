@@ -1,285 +1,242 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, Clock, Users, Target } from "lucide-react";
+import {
+  ArrowRight,
+  Briefcase,
+  Clock,
+  MapPin,
+  Sparkles,
+  Target,
+  Users,
+} from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
 
 const CareersPage = () => {
   const openPositions = [
     {
       title: "Full Stack Developer",
       department: "Engineering",
-      location: "Remote / Nkowankowa Township",
+      location: "Remote or Nkowankowa Township",
       type: "Full-time",
       experience: "2-4 years",
       skills: ["React", "Node.js", "TypeScript", "PostgreSQL"],
       description:
-        "Join our team to build innovative web applications and software solutions for South African businesses.",
+        "Build production-ready platforms for businesses solving meaningful operational and growth challenges.",
     },
     {
-      title: "UI/UX Designer",
+      title: "UI and UX Designer",
       department: "Design",
-      location: "Remote / Nkowankowa Township",
+      location: "Remote or Nkowankowa Township",
       type: "Full-time",
       experience: "1-3 years",
-      skills: ["Figma", "Adobe Creative Suite", "User Research", "Prototyping"],
+      skills: ["Figma", "Systems thinking", "Prototyping", "UX Writing"],
       description:
-        "Help create beautiful and intuitive user experiences for our client projects.",
+        "Shape high-quality product experiences and design systems for web and mobile products.",
     },
     {
-      title: "Junior Developer (Internship)",
+      title: "Junior Developer Internship",
       department: "Engineering",
       location: "Nkowankowa Township",
       type: "Internship",
       experience: "Entry level",
       skills: ["HTML", "CSS", "JavaScript", "Git"],
       description:
-        "Perfect opportunity for recent graduates or students to gain real-world development experience.",
-    },
-    {
-      title: "Business Development Representative",
-      department: "Sales",
-      location: "Limpopo Province",
-      type: "Part-time",
-      experience: "1-2 years",
-      skills: ["Sales", "Communication", "CRM", "Local Market Knowledge"],
-      description:
-        "Help us connect with more businesses in the region and expand our impact.",
+        "Learn by shipping real features with mentorship, code review, and clear growth checkpoints.",
     },
   ];
 
-  const benefits = [
+  const culturePillars = [
     {
       icon: Target,
-      title: "Professional Growth",
-      description:
-        "Continuous learning opportunities and career advancement paths",
+      title: "Outcome ownership",
+      description: "We care about shipped impact, not just completed tasks.",
     },
     {
       icon: Users,
-      title: "Collaborative Team",
-      description:
-        "Work with passionate professionals in a supportive environment",
+      title: "Collaborative execution",
+      description: "Design, product, and engineering solve problems together.",
     },
     {
-      icon: MapPin,
-      title: "Flexible Location",
-      description: "Remote work options with local community engagement",
+      icon: Sparkles,
+      title: "Continuous growth",
+      description: "We invest in learning and practical skill progression.",
     },
-    {
-      icon: Clock,
-      title: "Work-Life Balance",
-      description: "Flexible hours and time for personal development",
-    },
-  ];
-
-  const values = [
-    "Innovation through technology",
-    "Community-focused development",
-    "Continuous learning and growth",
-    "Quality and excellence in delivery",
-    "Collaboration and teamwork",
-    "Ethical business practices",
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <Badge variant="outline" className="mb-4">
-                Join Our Team
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Build the Future of
-                <span className="block text-primary">South African Tech</span>
+
+      <main className="pt-24">
+        <section className="section-shell">
+          <div className="absolute inset-0 mesh-background opacity-70" />
+          <div className="relative z-10 container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-4xl text-center"
+            >
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary/85">
+                Careers
+              </p>
+              <h1 className="text-4xl font-bold leading-tight text-foreground md:text-6xl">
+                Build products that move
+                <span className="headline-gradient"> real businesses forward</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Join our mission to transform businesses through technology.
-                Work on meaningful projects that make a real difference in our
-                community while growing your career.
+              <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                Join a team focused on high-quality execution, practical
+                innovation, and measurable impact for companies across South Africa.
               </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Company Culture */}
-        <section className="py-20">
+        <section className="pb-20">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-6">Why Work With Us?</h2>
-              <p className="text-muted-foreground mb-8">
-                We're not just building software - we're building the future of
-                business in South Africa. Our team is passionate about creating
-                solutions that make a real impact.
-              </p>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              {culturePillars.map((pillar, index) => {
+                const Icon = pillar.icon;
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                {benefits.map((benefit, index) => (
-                  <Card
-                    key={index}
-                    className="p-6 hover:shadow-lg transition-all duration-300"
+                return (
+                  <motion.article
+                    key={pillar.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.45, delay: index * 0.05 }}
                   >
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <benefit.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div className="text-left">
-                        <h3 className="font-semibold mb-2">{benefit.title}</h3>
-                        <p className="text-muted-foreground text-sm">
-                          {benefit.description}
+                    <Card className="glass-card section-ring rounded-2xl border-border/70 p-5">
+                      <CardContent className="p-0">
+                        <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/16 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <h2 className="text-lg font-semibold text-foreground">{pillar.title}</h2>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                          {pillar.description}
                         </p>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Our Values</h3>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {values.map((value, index) => (
-                    <Badge
-                      key={index}
-                      variant="secondary"
-                      className="px-3 py-1"
-                    >
-                      {value}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+                      </CardContent>
+                    </Card>
+                  </motion.article>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* Open Positions */}
-        <section className="py-20 bg-muted/30">
+        <section className="pb-24">
           <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Open Positions</h2>
-              <p className="text-muted-foreground">
-                Explore opportunities to join our growing team
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="mb-8 text-center"
+            >
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">Open positions</h2>
+              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                Explore current opportunities and grow your career while shipping
+                impactful products.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="max-w-4xl mx-auto space-y-6">
+            <div className="space-y-5">
               {openPositions.map((position, index) => (
-                <Card
-                  key={index}
-                  className="hover:shadow-lg transition-all duration-300"
+                <motion.article
+                  key={position.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
                 >
-                  <CardHeader>
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                      <div>
-                        <CardTitle className="text-xl mb-2">
-                          {position.title}
-                        </CardTitle>
-                        <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
-                          <span className="flex items-center">
-                            <Users className="w-4 h-4 mr-1" />
-                            {position.department}
-                          </span>
-                          <span className="flex items-center">
-                            <MapPin className="w-4 h-4 mr-1" />
-                            {position.location}
-                          </span>
-                          <span className="flex items-center">
-                            <Clock className="w-4 h-4 mr-1" />
-                            {position.type}
-                          </span>
+                  <Card className="glass-card section-ring rounded-3xl border-border/70">
+                    <CardHeader>
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                          <CardTitle className="text-2xl text-foreground">{position.title}</CardTitle>
+                          <div className="mt-3 flex flex-wrap gap-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                            <span className="flex items-center">
+                              <Briefcase className="mr-1 h-3.5 w-3.5" />
+                              {position.department}
+                            </span>
+                            <span className="flex items-center">
+                              <MapPin className="mr-1 h-3.5 w-3.5" />
+                              {position.location}
+                            </span>
+                            <span className="flex items-center">
+                              <Clock className="mr-1 h-3.5 w-3.5" />
+                              {position.type}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="rounded-full border border-border/70 bg-background/35 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                          {position.experience}
                         </div>
                       </div>
-                      <Badge variant="outline">{position.experience}</Badge>
-                    </div>
-                  </CardHeader>
+                    </CardHeader>
 
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      {position.description}
-                    </p>
+                    <CardContent>
+                      <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                        {position.description}
+                      </p>
 
-                    <div className="mb-4">
-                      <h4 className="font-semibold mb-2">Required Skills:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {position.skills.map((skill, idx) => (
-                          <Badge
-                            key={idx}
-                            variant="secondary"
-                            className="text-xs"
+                      <div className="mb-5 flex flex-wrap gap-2">
+                        {position.skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="rounded-full border border-border/70 bg-background/35 px-3 py-1 text-xs text-muted-foreground"
                           >
                             {skill}
-                          </Badge>
+                          </span>
                         ))}
                       </div>
-                    </div>
 
-                    <Button className="w-full sm:w-auto group">
-                      Apply Now
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </CardContent>
-                </Card>
+                      <Button className="group" variant="hero" size="sm" asChild>
+                        <a href="mailto:careers@hlulanitech.co.za?subject=Application%20for%20position">
+                          Apply Now
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Application Process */}
-        <section className="py-20">
+        <section className="pb-24">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-8">How to Apply</h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4">
-                    1
-                  </div>
-                  <h3 className="font-semibold mb-2">Submit Application</h3>
-                  <p className="text-muted-foreground text-sm">
-                    Send your CV and cover letter to our email
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4">
-                    2
-                  </div>
-                  <h3 className="font-semibold mb-2">Initial Interview</h3>
-                  <p className="text-muted-foreground text-sm">
-                    Phone or video call to discuss your background
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4">
-                    3
-                  </div>
-                  <h3 className="font-semibold mb-2">Technical Assessment</h3>
-                  <p className="text-muted-foreground text-sm">
-                    Practical task or portfolio review
-                  </p>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="section-ring rounded-3xl border border-border/70 bg-card/45 p-8 text-center"
+            >
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+                Do not see your role listed?
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                We are always open to meeting talented people who align with our
+                standards and mission.
+              </p>
+              <div className="mt-6 flex justify-center">
+                <Button variant="premium" size="lg" className="group" asChild>
+                  <a href="mailto:careers@hlulanitech.co.za?subject=General%20Application">
+                    Send General Application
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </a>
+                </Button>
               </div>
-
-              <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
-                <h3 className="font-semibold mb-2">Ready to Join Us?</h3>
-                <p className="text-muted-foreground mb-4">
-                  Send your application to:{" "}
-                  <strong>careers@hlulanitech.co.za</strong>
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Include your CV, a brief cover letter, and links to your
-                  portfolio or previous work.
-                </p>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );

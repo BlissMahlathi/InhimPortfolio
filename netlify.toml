@@ -1,0 +1,27 @@
+[build]
+  base = "projectFolder/portfolio"
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "https://inhimtrading.com/*"
+  to = "https://www.inhimtrading.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://inhimtrading.co.za/*"
+  to = "https://www.inhimtrading.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.inhimtrading.co.za/*"
+  to = "https://www.inhimtrading.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

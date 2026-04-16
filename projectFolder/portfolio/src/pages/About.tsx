@@ -1,223 +1,279 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Target, Award, Globe } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  Brain,
+  Code,
+  Mail,
+  MessageCircle,
+  Phone,
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
+} from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import myPicture from "@/assets/myPicture.jpg";
+import { motion } from "framer-motion";
 
 const AboutPage = () => {
   const achievements = [
-    { number: "50+", label: "Projects Completed" },
-    { number: "30+", label: "Happy Clients" },
-    { number: "100%", label: "Client Satisfaction" },
-    { number: "3x", label: "Average ROI" },
+    { icon: Code, number: "50+", label: "Projects delivered" },
+    { icon: Users, number: "30+", label: "Business partners" },
+    { icon: Award, number: "100%", label: "Execution commitment" },
+    { icon: Zap, number: "3x", label: "Faster product cycles" },
   ];
 
   const values = [
     {
-      icon: Users,
-      title: "Client-Focused Approach",
+      icon: Brain,
+      title: "AI-guided engineering",
       description:
-        "We prioritize understanding your unique business needs and challenges to deliver solutions that truly make a difference.",
+        "We use AI where it accelerates quality, never where it compromises reliability.",
     },
     {
       icon: Target,
-      title: "Results-Driven Solutions",
+      title: "Outcome-first delivery",
       description:
-        "Every project is designed with clear objectives and measurable outcomes that align with your business goals.",
+        "Every sprint is tied to measurable business outcomes, not vanity output.",
     },
     {
-      icon: Award,
-      title: "Quality & Excellence",
+      icon: TrendingUp,
+      title: "Growth-oriented thinking",
       description:
-        "We maintain the highest standards in code quality, design, and project delivery to ensure long-term success.",
+        "We design digital systems to scale with your team, products, and operations.",
     },
     {
-      icon: Globe,
-      title: "Innovation & Technology",
+      icon: Users,
+      title: "Community impact",
       description:
-        "We leverage the latest technologies and AI-assisted development to deliver cutting-edge solutions efficiently.",
+        "Our work helps local businesses become digitally stronger and more competitive.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <Badge variant="outline" className="mb-4">
-                About Us
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Transforming Businesses Through
-                <span className="block text-primary">Smart Technology</span>
+
+      <main className="pt-24">
+        <section className="section-shell">
+          <div className="absolute inset-0 mesh-background opacity-70" />
+          <div className="relative z-10 container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-4xl text-center"
+            >
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary/85">
+                About Inhim Trading
+              </p>
+              <h1 className="text-4xl font-bold leading-tight text-foreground md:text-6xl">
+                Engineering digital systems
+                <span className="headline-gradient"> for real business growth</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                We're a forward-thinking development company dedicated to
-                helping South African businesses organize their operations,
-                establish powerful online presence, and unlock growth through
-                custom digital solutions.
+              <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                We partner with South African businesses to build high-impact
+                websites and software that improve operations, clarify offers,
+                and drive predictable growth.
               </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Founder Section */}
-        <section className="py-20">
+        <section className="pb-24">
           <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">Meet the Founder</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Learn about the visionary behind the innovative solutions that
-                  transform businesses
-                </p>
-              </div>
-
-              <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                  <div className="text-center lg:text-left">
-                    <div className="relative w-64 h-64 mx-auto lg:mx-0 mb-6">
-                      <img
-                        src={myPicture}
-                        alt="Hlulani Bliss Mahlathi"
-                        className="w-full h-full object-cover rounded-full border-4 border-primary/20 shadow-xl"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-3xl font-bold mb-2">
-                      Hlulani Bliss Mahlathi
-                    </h3>
-                    <p className="text-primary font-semibold mb-2">
-                      Founder & CEO
-                    </p>
-                    <p className="text-muted-foreground mb-4">
-                      Director at INHIM Trading (Pty) Ltd
-                    </p>
-                    <p className="text-muted-foreground mb-6">
-                      Based in Nkowankowa Township, South Africa
-                    </p>
-
-                    <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
-                      <p>
-                        As the founder and CEO, I'm passionate about bridging
-                        the digital divide and helping businesses in our
-                        community harness the power of technology. With
-                        experience as a director at INHIM Trading (Pty) Ltd, I
-                        understand the unique challenges that South African
-                        businesses face in today's digital landscape.
-                      </p>
-                      <p>
-                        My mission is to make professional web development and
-                        software solutions accessible to businesses of all
-                        sizes, from small local enterprises to growing
-                        companies. I believe that every business deserves a
-                        strong digital presence and efficient operational
-                        systems.
-                      </p>
-                      <p>
-                        Through AI-assisted development and modern technologies,
-                        we deliver enterprise-level solutions at affordable
-                        prices, helping businesses streamline their operations
-                        and reach new heights of success.
-                      </p>
-                    </div>
-
-                    <Button className="group">
-                      Get in Touch
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Achievements */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Our Track Record</h2>
-              <p className="text-muted-foreground">
-                Numbers that speak to our commitment to excellence
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">
-                    {achievement.number}
-                  </div>
-                  <div className="text-muted-foreground">
-                    {achievement.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Values */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Our Values</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                The principles that guide everything we do and drive our
-                commitment to excellence
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {values.map((value, index) => (
-                <Card
-                  key={index}
-                  className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                >
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+              <motion.article
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55 }}
+              >
+                <Card className="glass-card section-ring rounded-3xl border-border/70 p-6 md:p-8">
                   <CardContent className="p-0">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <value.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">
-                          {value.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {value.description}
+                    <div className="grid gap-6 md:grid-cols-[220px_1fr]">
+                      <div className="text-center">
+                        <img
+                          src={myPicture}
+                          alt="Hlulani Bliss Mahlathi"
+                          className="mx-auto h-52 w-52 rounded-3xl border border-border/70 object-cover shadow-card"
+                        />
+                        <h2 className="mt-4 text-2xl font-bold text-foreground">
+                          Hlulani Bliss Mahlathi
+                        </h2>
+                        <p className="text-sm text-primary">Founder & CEO</p>
+                        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                          Nkowankowa Township, SA
                         </p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-2xl font-bold text-foreground">Our mission</h3>
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                          We exist to give growing businesses access to premium
+                          digital infrastructure that improves performance, team
+                          efficiency, and customer experience.
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                          We combine strategy, design, and engineering into one
+                          focused delivery model so projects ship faster and
+                          create measurable value.
+                        </p>
+
+                        <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                          <a
+                            href="tel:0715231720"
+                            className="rounded-xl border border-border/70 bg-background/35 p-3 text-sm text-muted-foreground transition-colors hover:border-primary/45 hover:text-foreground"
+                          >
+                            <div className="mb-1 flex items-center gap-2 font-semibold text-foreground">
+                              <Phone className="h-4 w-4 text-primary" />
+                              Call
+                            </div>
+                            071 523 1720
+                          </a>
+                          <a
+                            href="mailto:blissmahlathi37@gmail.com"
+                            className="rounded-xl border border-border/70 bg-background/35 p-3 text-sm text-muted-foreground transition-colors hover:border-primary/45 hover:text-foreground"
+                          >
+                            <div className="mb-1 flex items-center gap-2 font-semibold text-foreground">
+                              <Mail className="h-4 w-4 text-primary" />
+                              Email
+                            </div>
+                            blissmahlathi37@gmail.com
+                          </a>
+                          <a
+                            href="https://wa.me/27715231720"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="rounded-xl border border-border/70 bg-background/35 p-3 text-sm text-muted-foreground transition-colors hover:border-primary/45 hover:text-foreground"
+                          >
+                            <div className="mb-1 flex items-center gap-2 font-semibold text-foreground">
+                              <MessageCircle className="h-4 w-4 text-primary" />
+                              WhatsApp
+                            </div>
+                            Quick business chat
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-              ))}
+              </motion.article>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.55, delay: 0.08 }}
+                className="grid grid-cols-2 gap-4"
+              >
+                {achievements.map((achievement) => {
+                  const Icon = achievement.icon;
+
+                  return (
+                    <Card
+                      key={achievement.label}
+                      className="glass-card section-ring rounded-2xl border-border/70 p-5"
+                    >
+                      <CardContent className="p-0">
+                        <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/16 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <p className="text-3xl font-extrabold text-foreground">
+                          {achievement.number}
+                        </p>
+                        <p className="mt-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                          {achievement.label}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Work Together?</h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your business with our
-              digital solutions.
-            </p>
-            <Button size="lg" className="group">
-              Start Your Project
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+        <section className="pb-24">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="mb-8 text-center"
+            >
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+                Operating principles
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                These principles shape how we collaborate, build, and deliver
+                outcomes for each client.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              {values.map((value, index) => {
+                const Icon = value.icon;
+
+                return (
+                  <motion.article
+                    key={value.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.45, delay: index * 0.05 }}
+                  >
+                    <Card className="glass-card section-ring rounded-2xl border-border/70 p-5">
+                      <CardContent className="p-0">
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/16 text-primary">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-foreground">
+                              {value.title}
+                            </h3>
+                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                              {value.description}
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.article>
+                );
+              })}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="section-ring mt-10 rounded-3xl border border-border/70 bg-card/45 p-8 text-center"
+            >
+              <h3 className="text-3xl font-bold text-foreground">Let’s build together</h3>
+              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                Tell us where your digital infrastructure is currently costing
+                you time or growth, and we’ll map the next best move.
+              </p>
+              <div className="mt-6 flex justify-center">
+                <Button size="lg" variant="hero" className="group" asChild>
+                  <a href="/#contact">
+                    Start Your Project
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );

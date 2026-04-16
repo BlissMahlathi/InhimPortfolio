@@ -6,18 +6,42 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
 
   const isHomeRoute = location.pathname === "/";
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let idleTimer: number | undefined;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 24);
+
+      if (currentScrollY <= 20) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY < lastScrollY) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        setIsHeaderVisible(false);
+        setIsMobileMenuOpen(false);
+      }
+
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        setIsHeaderVisible(true);
+      }, 140);
+
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(idleTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -47,6 +71,8 @@ const Header = () => {
   ];
 
   const navigateToItem = (item: (typeof navigation)[number]) => {
+    setIsMobileMenuOpen(false);
+
     if (item.sectionId && isHomeRoute) {
       document.getElementById(item.sectionId)?.scrollIntoView({
         behavior: "smooth",
@@ -69,7 +95,9 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transform transition-all duration-300 ${
+        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+      } ${
         isScrolled
           ? "border-b border-border/70 bg-background/85 shadow-card backdrop-blur-xl"
           : "bg-background/35 backdrop-blur-lg"
