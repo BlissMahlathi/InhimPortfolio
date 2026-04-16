@@ -7,197 +7,217 @@ import {
   Palette,
   Settings,
   ArrowRight,
-  Zap,
+  CheckCircle2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CountUp from "@/components/CountUp";
+import { motion } from "framer-motion";
 
 const Services = () => {
   const services = [
     {
       icon: Globe,
-      title: "Web Development",
+      title: "Revenue Websites",
       description:
-        "Custom websites and web applications built with modern technologies like React, Next.js, and TypeScript.",
+        "High-performance websites built to increase inbound leads and communicate your value clearly.",
       features: [
-        "Responsive Design",
-        "SEO Optimized",
-        "Fast Performance",
-        "Modern UI/UX",
+        "Messaging architecture",
+        "Conversion-focused UX",
+        "SEO foundations",
+        "Performance tuning",
       ],
-      price: "R2,000 - R3,500",
+      price: "From R2,500",
+      timeline: "2-4 weeks",
     },
     {
       icon: Smartphone,
-      title: "Mobile Solutions",
+      title: "Product Interfaces",
       description:
-        "Progressive web apps and mobile-friendly solutions that work seamlessly across all devices.",
+        "Responsive, app-like interfaces that feel polished on mobile and desktop from day one.",
       features: [
-        "Cross-Platform",
-        "Offline Capable",
-        "Push Notifications",
-        "App Store Ready",
+        "Cross-device consistency",
+        "Design system setup",
+        "Accessibility checks",
+        "Micro-interactions",
       ],
-      price: "R3,600 - R5,000",
+      price: "From R3,800",
+      timeline: "3-5 weeks",
     },
     {
       icon: Database,
-      title: "Backend & APIs",
+      title: "Backend & Integrations",
       description:
-        "Robust backend systems, APIs, and database solutions to power your applications.",
+        "Reliable APIs and data flows that connect your website to payments, CRMs, and internal tools.",
       features: [
         "REST APIs",
-        "Database Design",
-        "Cloud Integration",
-        "Security First",
+        "Database modeling",
+        "Automation pipelines",
+        "Security hardening",
       ],
-      price: "R5,000 - R7,500",
+      price: "From R5,500",
+      timeline: "3-6 weeks",
     },
     {
       icon: Code2,
-      title: "Custom Software",
+      title: "Custom Platforms",
       description:
-        "Tailored software solutions to streamline your business processes and boost productivity.",
+        "Purpose-built systems for operations, workflow management, and service delivery.",
       features: [
-        "Process Automation",
-        "Integration",
-        "Scalable Architecture",
-        "Maintenance",
+        "Role-based dashboards",
+        "Business logic automation",
+        "Scalable architecture",
+        "Support runway",
       ],
-      price: "R8,000 - R12,000",
+      price: "From R8,500",
+      timeline: "5-10 weeks",
     },
     {
       icon: Palette,
-      title: "UI/UX Design",
+      title: "UX & Brand Systems",
       description:
-        "Beautiful, user-friendly interfaces that convert visitors into customers.",
+        "A coherent visual and interaction language across your entire digital presence.",
       features: [
-        "User Research",
-        "Wireframing",
-        "Prototyping",
-        "Design Systems",
+        "Experience mapping",
+        "Wireframes",
+        "Interactive prototypes",
+        "Reusable components",
       ],
-      price: "R2,000 - R3,500",
+      price: "From R3,000",
+      timeline: "2-4 weeks",
     },
     {
       icon: Settings,
-      title: "Digital Organization",
+      title: "Workflow Optimization",
       description:
-        "Help businesses organize their digital workflows and improve operational efficiency.",
+        "We remove bottlenecks by connecting systems and simplifying your internal operations.",
       features: [
-        "Workflow Optimization",
-        "Tool Integration",
-        "Training",
-        "Support",
+        "Process diagnostics",
+        "Tool integration",
+        "Team enablement",
+        "Performance dashboards",
       ],
-      price: "R12,000+ (Tailored)",
+      price: "Tailored scope",
+      timeline: "Based on complexity",
     },
   ];
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    window.history.replaceState(null, "", "/#contact");
   };
 
   return (
-    <section id="services" className="py-20 bg-gradient-card">
+    <section id="services" className="section-shell">
+      <div className="pointer-events-none absolute inset-0 mesh-background opacity-65" />
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Our{" "}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Services
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We offer comprehensive digital solutions to help your business
-            thrive in the modern world.
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-16 max-w-3xl text-center"
+        >
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
+            Services
           </p>
-        </div>
+          <h2 className="text-4xl font-bold text-foreground md:text-5xl">
+            Build a digital stack that
+            <span className="headline-gradient"> compounds your growth</span>
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            We design and engineer business-grade products, from marketing
+            websites to operational software, with clear ROI targets.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
-              <Card
+              <motion.article
                 key={index}
-                className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border/50 bg-card/50 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
               >
-                <CardHeader>
-                  <div className="w-14 h-14 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-7 h-7 text-primary-foreground" />
-                  </div>
-                  <CardTitle className="text-xl font-semibold text-card-foreground">
-                    {service.title}
-                  </CardTitle>
-                  <div className="mt-2">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
-                      {service.price}
-                    </span>
-                  </div>
-                  {/* Animated stat for each service (example: project count) */}
-                  {index === 0 && (
-                    <div className="mt-2 text-lg font-bold text-primary">
-                      <CountUp end={50} suffix="+" /> Projects
+                <Card className="glass-card section-ring h-full rounded-3xl border-border/70 bg-card/50">
+                  <CardHeader className="pb-4">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/16 text-primary">
+                      <IconComponent className="h-6 w-6" />
                     </div>
-                  )}
-                  {index === 1 && (
-                    <div className="mt-2 text-lg font-bold text-primary">
-                      <CountUp end={20} suffix="+" /> Apps
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                      <span className="rounded-full border border-border/70 bg-background/35 px-3 py-1 text-xs text-muted-foreground">
+                        {service.timeline}
+                      </span>
+                      <span className="rounded-full bg-primary/16 px-3 py-1 text-xs font-semibold text-primary">
+                        {service.price}
+                      </span>
                     </div>
-                  )}
-                  {index === 2 && (
-                    <div className="mt-2 text-lg font-bold text-primary">
-                      <CountUp end={30} suffix="+" /> APIs
-                    </div>
-                  )}
-                  {index === 3 && (
-                    <div className="mt-2 text-lg font-bold text-primary">
-                      <CountUp end={15} suffix="+" /> Solutions
-                    </div>
-                  )}
-                  {index === 4 && (
-                    <div className="mt-2 text-lg font-bold text-primary">
-                      <CountUp end={40} suffix="+" /> Designs
-                    </div>
-                  )}
-                  {index === 5 && (
-                    <div className="mt-2 text-lg font-bold text-primary">
-                      <CountUp end={10} suffix="+" /> Workflows
-                    </div>
-                  )}
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li
-                        key={featureIndex}
-                        className="flex items-center text-sm text-muted-foreground"
-                      >
-                        <Zap className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+
+                    <CardTitle className="text-xl text-card-foreground">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+
+                  <CardContent>
+                    <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                      {service.description}
+                    </p>
+
+                    <ul className="space-y-2">
+                      {service.features.map((feature, featureIndex) => (
+                        <li
+                          key={featureIndex}
+                          className="flex items-center text-sm text-muted-foreground"
+                        >
+                          <CheckCircle2 className="mr-2 h-4 w-4 shrink-0 text-primary" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {index < 3 && (
+                      <div className="mt-6 border-t border-border/60 pt-4">
+                        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground/80">
+                          Typical project count
+                        </p>
+                        <p className="mt-1 text-xl font-bold text-foreground">
+                          <CountUp end={[46, 32, 38][index]} suffix="+" />
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.article>
             );
           })}
         </div>
 
-        <div className="text-center">
-          <Button
-            variant="premium"
-            size="lg"
-            onClick={scrollToContact}
-            className="group"
-          >
-            Get Started Today
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55 }}
+          className="section-ring rounded-3xl border border-border/70 bg-card/45 p-8 text-center"
+        >
+          <p className="text-sm uppercase tracking-[0.2em] text-primary/80">
+            Ready to scope your build?
+          </p>
+          <h3 className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-foreground">
+            Tell us your goals and get a practical build roadmap.
+          </h3>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            We usually respond with architecture recommendations, a delivery
+            approach, and pricing ranges within 24 hours.
+          </p>
+          <div className="mt-7">
+            <Button variant="hero" size="lg" onClick={scrollToContact} className="group">
+              Book a Strategy Call
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

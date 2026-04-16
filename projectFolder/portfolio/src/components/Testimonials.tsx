@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Star, Quote } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Quote, Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Testimonials = () => {
   const testimonials = [
@@ -13,7 +13,6 @@ const Testimonials = () => {
       content:
         "Our online food ordering platform for students is now seamless and fast. Orders are up and students love the convenience!",
       rating: 5,
-      project: "Campus Eats Online Store",
     },
     {
       name: "HotelY Service Platform",
@@ -23,7 +22,6 @@ const Testimonials = () => {
       content:
         "Managing guests and services is now effortless. The platform is reliable and easy for our staff and guests.",
       rating: 5,
-      project: "HotelY Service Platform",
     },
     {
       name: "Retema Student Accommodation",
@@ -33,7 +31,6 @@ const Testimonials = () => {
       content:
         "Listing and finding student accommodation is so much easier. Our occupancy rates have improved!",
       rating: 5,
-      project: "Retema Student Accommodation",
     },
     {
       name: "Ribs Delivery WebApp",
@@ -43,7 +40,6 @@ const Testimonials = () => {
       content:
         "Our food delivery business runs smoother and customers get their orders faster. Highly recommended!",
       rating: 5,
-      project: "Ribs Delivery WebApp",
     },
     {
       name: "Student Social Network",
@@ -53,7 +49,6 @@ const Testimonials = () => {
       content:
         "Students are more connected than ever. Engagement and activity on campus have increased thanks to this platform.",
       rating: 5,
-      project: "Student Social Network",
     },
     {
       name: "Passion Mogale Borehole Drilling",
@@ -63,169 +58,117 @@ const Testimonials = () => {
       content:
         "Our business is now visible online and we get more client inquiries every week. Great job!",
       rating: 5,
-      project: "Passion Mogale Borehole Drilling",
-    },
-    {
-      name: "Health Care Service Portal",
-      role: "Healthcare",
-      company: "test-tau-green-64.vercel.app",
-      image: "",
-      content:
-        "Managing health services and appointments is now simple and efficient. Patients and staff both benefit.",
-      rating: 5,
-      project: "Health Care Service Portal",
-    },
-    {
-      name: "OGT Residence WebApp",
-      role: "Accommodation",
-      company: "ogtresidence.netlify.app",
-      image: "",
-      content:
-        "Our residence management is now digital and organized. Students and staff love the improvements.",
-      rating: 5,
-      project: "OGT Residence WebApp",
-    },
-    {
-      name: "Online Mini Store",
-      role: "E-Commerce",
-      company: "phenomenal-torte-764818.netlify.app",
-      image: "",
-      content:
-        "Launching new products is quick and easy. The store is fast and user-friendly for our customers.",
-      rating: 5,
-      project: "Online Mini Store",
-    },
-    {
-      name: "Hacking Alert Prank",
-      role: "Entertainment",
-      company: "delicate-concha-2e8ec5.netlify.app",
-      image: "",
-      content:
-        "A fun and viral prank app that brought lots of laughs to our community!",
-      rating: 5,
-      project: "Hacking Alert Prank",
-    },
-    {
-      name: "SoS Emergency Native Mobile App",
-      role: "Mobile App",
-      company: "-",
-      image: "",
-      content:
-        "The SoS app is a lifesaver. Fast, reliable, and easy to use in emergencies.",
-      rating: 5,
-      project: "SoS Emergency Native Mobile App",
     },
   ];
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
+  const renderStars = (rating: number) =>
+    Array.from({ length: 5 }).map((_, index) => (
       <Star
         key={index}
-        className={`w-4 h-4 ${
-          index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
+        className={`h-4 w-4 ${
+          index < rating ? "fill-current text-primary-glow" : "text-muted-foreground/40"
         }`}
       />
     ));
-  };
 
   return (
-    <section
-      id="testimonials"
-      className="py-20 bg-gradient-to-br from-background via-muted/20 to-background"
-    >
+    <section id="testimonials" className="section-shell">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">
-            Client Success Stories
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            What Our Clients
-            <span className="block text-primary">Say About Us</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what business owners say
-            about the impact our solutions have had on their operations.
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-14 max-w-3xl text-center"
+        >
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
+            Client Voice
           </p>
-        </div>
+          <h2 className="text-4xl font-bold text-foreground md:text-5xl">
+            Trusted by teams that value
+            <span className="headline-gradient"> execution quality</span>
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Real outcomes from business owners who partnered with us to modernize
+            operations and ship digital products.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="relative overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 hover:border-primary/20"
+            <motion.article
+              key={testimonial.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.28 }}
+              transition={{ duration: 0.45, delay: index * 0.05 }}
             >
-              <CardContent className="p-6">
-                <div className="absolute top-4 right-4 opacity-10">
-                  <Quote className="w-8 h-8 text-primary" />
-                </div>
+              <Card className="glass-card section-ring relative h-full rounded-3xl border-border/70">
+                <CardContent className="p-6">
+                  <Quote className="absolute right-6 top-6 h-7 w-7 text-primary/30" />
 
-                <div className="flex items-center space-x-1 mb-4">
-                  {renderStars(testimonial.rating)}
-                </div>
-
-                <blockquote className="text-muted-foreground mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </blockquote>
-
-                <div className="flex items-center space-x-4">
-                  <Avatar className="w-12 h-12">
-                    <AvatarImage
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                    />
-                    <AvatarFallback>
-                      {testimonial.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.role}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.company}
-                    </p>
+                  <div className="mb-4 flex items-center gap-1">
+                    {renderStars(testimonial.rating)}
                   </div>
-                </div>
 
-                <div className="mt-4 pt-4 border-t border-border">
-                  <Badge variant="secondary" className="text-xs">
-                    {testimonial.project}
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+                  <blockquote className="text-sm leading-relaxed text-muted-foreground">
+                    "{testimonial.content}"
+                  </blockquote>
+
+                  <div className="mt-6 border-t border-border/65 pt-5">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-11 w-11 border border-border/70">
+                        <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                        <AvatarFallback>
+                          {testimonial.name
+                            .split(" ")
+                            .map((namePart) => namePart[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
+                        <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                          {testimonial.role}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="mt-3 text-xs text-muted-foreground">{testimonial.company}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.article>
           ))}
         </div>
 
-        {/* Trust Indicators */}
-        <div className="bg-primary/5 rounded-2xl p-8 border">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">100%</div>
-              <div className="text-sm text-muted-foreground">
-                Client Satisfaction
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55 }}
+          className="section-ring rounded-3xl border border-border/70 bg-card/45 p-8"
+        >
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {[
+              { value: "100%", label: "Satisfaction focus" },
+              { value: "50+", label: "Projects launched" },
+              { value: "24h", label: "Average response" },
+              { value: "3x", label: "Speed improvement" },
+            ].map((metric) => (
+              <div
+                key={metric.label}
+                className="rounded-2xl border border-border/65 bg-background/35 p-4 text-center"
+              >
+                <p className="text-3xl font-extrabold text-primary">{metric.value}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                  {metric.label}
+                </p>
               </div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">50+</div>
-              <div className="text-sm text-muted-foreground">
-                Projects Delivered
-              </div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">24h</div>
-              <div className="text-sm text-muted-foreground">Response Time</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">3x</div>
-              <div className="text-sm text-muted-foreground">Average ROI</div>
-            </div>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

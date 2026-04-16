@@ -1,31 +1,30 @@
-import { Code2, Mail, Phone, MessageCircle, Github } from "lucide-react";
+import { Mail, Phone, MessageCircle, Github, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
 
   const footerLinks = {
     Services: [
-      { name: "Web Development", href: "/services" },
-      { name: "Mobile Apps", href: "/services" },
-      { name: "Backend & APIs", href: "/services" },
-      { name: "UI/UX Design", href: "/services" },
-      { name: "Digital Organization", href: "/services" },
+      { name: "Revenue Websites", href: "/services" },
+      { name: "Product Interfaces", href: "/services" },
+      { name: "Backend Integrations", href: "/services" },
+      { name: "Workflow Optimization", href: "/services" },
     ],
     Company: [
-      { name: "About Us", href: "/about" },
-      { name: "Our Process", href: "/#process" },
+      { name: "About", href: "/about" },
       { name: "Case Studies", href: "/case-studies" },
       { name: "Careers", href: "/careers" },
       { name: "Blog", href: "/blog" },
     ],
-    Resources: [
+    Support: [
       { name: "Documentation", href: "/documentation" },
       { name: "Support", href: "/support" },
-      { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Terms of Service", href: "/terms-of-service" },
       { name: "FAQ", href: "/faq" },
+      { name: "Privacy", href: "/privacy-policy" },
+      { name: "Terms", href: "/terms-of-service" },
     ],
   };
 
@@ -39,90 +38,73 @@ const Footer = () => {
     { icon: Mail, href: "mailto:blissmahlathi37@gmail.com", label: "Email" },
   ];
 
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  const handleCta = () => {
+    if (window.location.pathname === "/") {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      window.history.replaceState(null, "", "/#contact");
+      return;
+    }
+
+    navigate("/#contact");
   };
 
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-6">
-        {/* Main Footer Content */}
-        <div className="py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {/* Brand Section */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <Code2 className="w-5 h-5 text-primary-foreground" />
+    <footer className="relative border-t border-border/70 bg-background/70">
+      <div className="pointer-events-none absolute inset-0 mesh-background opacity-35" />
+
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="py-14">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-accent text-sm font-black text-primary-foreground shadow-glow">
+                  IT
                 </div>
-                <span className="text-xl font-bold text-card-foreground">
-                  Hlulani<span className="text-primary">Tech</span>
-                </span>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                    Inhim Trading
+                  </p>
+                  <p className="text-base font-bold text-foreground">Digital Systems Studio</p>
+                </div>
               </div>
-              <p className="text-muted-foreground mb-6 max-w-md">
-                Transforming South African businesses through innovative web
-                solutions, custom software development, and strategic digital
-                transformation.
+
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                Premium engineering partner for ambitious businesses building
+                websites, platforms, and digital operations that scale.
               </p>
 
-              {/* Quick Contact */}
-              <div className="space-y-3">
+              <div className="mt-5 space-y-2 text-sm">
                 <a
                   href="mailto:blissmahlathi37@gmail.com"
-                  className="flex items-center text-muted-foreground hover:text-primary transition-colors"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <Mail className="w-4 h-4 mr-2" />
+                  <Mail className="h-4 w-4 text-primary" />
                   blissmahlathi37@gmail.com
                 </a>
                 <a
                   href="tel:0715231720"
-                  className="flex items-center text-muted-foreground hover:text-primary transition-colors"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <Phone className="w-4 h-4 mr-2" />
+                  <Phone className="h-4 w-4 text-primary" />
                   071 523 1720
-                </a>
-                <a
-                  href="https://wa.me/27715231720"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  WhatsApp Chat
                 </a>
               </div>
             </div>
 
-            {/* Links Sections */}
             {Object.entries(footerLinks).map(([title, links]) => (
               <div key={title}>
-                <h3 className="font-semibold text-card-foreground mb-4">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
                   {title}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="mt-4 space-y-3">
                   {links.map((link) => (
                     <li key={link.name}>
-                      {link.href.startsWith("/#") ? (
-                        <button
-                          onClick={() => {
-                            if (link.href === "/#process") {
-                              document
-                                .getElementById("about")
-                                ?.scrollIntoView({ behavior: "smooth" });
-                            }
-                          }}
-                          className="text-muted-foreground hover:text-primary transition-colors text-left"
-                        >
-                          {link.name}
-                        </button>
-                      ) : (
-                        <Link
-                          to={link.href}
-                          className="text-muted-foreground hover:text-primary transition-colors block"
-                        >
-                          {link.name}
-                        </Link>
-                      )}
+                      <Link
+                        to={link.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {link.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -131,54 +113,42 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="py-12 border-t border-border">
-          <div className="text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-card-foreground mb-4">
-              Ready to Start Your Project?
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your digital presence and
-              drive your business forward.
-            </p>
-            <Button
-              variant="cta"
-              size="lg"
-              onClick={scrollToContact}
-              className="group"
-            >
-              Get Free Consultation
-              <MessageCircle className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
+        <div className="section-ring rounded-3xl border border-border/70 bg-card/45 p-7 text-center">
+          <h3 className="text-3xl font-bold text-foreground">Bring your next platform to life</h3>
+          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+            We blend strategy, UX, and engineering to ship high-performing
+            digital systems tailored to your business model.
+          </p>
+          <div className="mt-6">
+            <Button variant="hero" size="lg" onClick={handleCta} className="group">
+              Book a Discovery Session
+              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Button>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © {currentYear} INHIM Trading (Pty) Ltd. All rights reserved.
-              Built with ❤️ using React & TypeScript.
-            </p>
+        <div className="flex flex-col items-center justify-between gap-5 border-t border-border/70 py-6 md:flex-row">
+          <p className="text-sm text-muted-foreground">
+            {currentYear} INHIM Trading (Pty) Ltd. All rights reserved.
+          </p>
 
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => {
-                const IconComponent = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 bg-muted hover:bg-primary rounded-lg flex items-center justify-center transition-colors group"
-                    aria-label={social.label}
-                  >
-                    <IconComponent className="w-4 h-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
-                  </a>
-                );
-              })}
-            </div>
+          <div className="flex items-center gap-3">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/70 bg-background/40 text-muted-foreground transition-all hover:border-primary/45 hover:text-primary"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

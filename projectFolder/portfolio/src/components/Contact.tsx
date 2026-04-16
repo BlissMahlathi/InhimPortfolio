@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import {
   Mail,
@@ -13,8 +12,9 @@ import {
   MessageCircle,
   Send,
   Clock,
-  Globe,
+  ArrowRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,13 +33,12 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: "Consultation request received!",
+      title: "Consultation request received",
       description:
-        "We'll analyze your requirements and get back to you within 24 hours with a custom proposal.",
+        "Thanks for reaching out. We will respond with next steps within 24 hours.",
     });
 
     setFormData({
@@ -63,13 +62,6 @@ const Contact = () => {
     }));
   };
 
-  const handleSelectChange = (field: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
   const contactInfo = [
     {
       icon: Mail,
@@ -86,7 +78,7 @@ const Contact = () => {
     {
       icon: MessageCircle,
       title: "WhatsApp",
-      content: "Quick Chat",
+      content: "Start a chat",
       action: "https://wa.me/27715231720",
     },
     {
@@ -98,99 +90,112 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-card">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">
-            Get Started
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Transform
-            <span className="block text-primary">Your Business?</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Let's discuss how we can help streamline your operations, establish
-            your online presence, and drive growth through custom digital
-            solutions.
+    <section id="contact" className="section-shell">
+      <div className="pointer-events-none absolute inset-0 mesh-background opacity-65" />
+      <div className="container relative z-10 mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-14 max-w-3xl text-center"
+        >
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
+            Start Here
           </p>
-        </div>
+          <h2 className="text-4xl font-bold text-foreground md:text-5xl">
+            Ready to launch your
+            <span className="headline-gradient"> next growth system?</span>
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Share your goals and we will return with a practical roadmap,
+            recommended stack, and investment guidance.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Contact Info */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold mb-6 text-foreground">
-              Get in Touch
-            </h3>
-
-            {contactInfo.map((info, index) => {
-              const IconComponent = info.icon;
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.22 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            {contactInfo.map((info) => {
+              const Icon = info.icon;
               const content = (
-                <Card className="p-4 hover:shadow-card transition-all duration-300 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                      <IconComponent className="w-6 h-6 text-primary-foreground" />
+                <Card className="glass-card section-ring rounded-2xl border-border/70 p-4">
+                  <CardContent className="p-0">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/16 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                          {info.title}
+                        </p>
+                        <p className="text-sm font-semibold text-foreground">{info.content}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-card-foreground">
-                        {info.title}
-                      </h4>
-                      <p className="text-muted-foreground">{info.content}</p>
-                    </div>
-                  </div>
+                  </CardContent>
                 </Card>
               );
 
-              return info.action ? (
-                <a
-                  key={index}
-                  href={info.action}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  {content}
-                </a>
-              ) : (
-                <div key={index}>{content}</div>
-              );
+              if (info.action) {
+                return (
+                  <a
+                    key={info.title}
+                    href={info.action}
+                    target={info.action.startsWith("http") ? "_blank" : undefined}
+                    rel={info.action.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="block"
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return <div key={info.title}>{content}</div>;
             })}
 
-            {/* Availability */}
-            <Card className="p-4 border-border/50 bg-card/50 backdrop-blur-sm">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-green-600" />
+            <Card className="glass-card section-ring rounded-2xl border-border/70 p-5">
+              <CardContent className="p-0">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/16 text-primary">
+                    <Clock className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">
+                      Availability for new builds
+                    </p>
+                    <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                      Typical response in under 24 hours
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-card-foreground">
-                    Availability
-                  </h4>
-                  <p className="text-green-600 text-sm">
-                    Available for new projects
-                  </p>
-                  <p className="text-muted-foreground text-sm">
-                    Response within 24 hours
-                  </p>
-                </div>
-              </div>
+              </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+          >
+            <Card className="glass-card section-ring rounded-3xl border-border/70">
               <CardHeader>
-                <CardTitle className="text-2xl font-semibold text-card-foreground">
-                  Start Your Project
+                <CardTitle className="text-2xl text-card-foreground">
+                  Tell us about your project
                 </CardTitle>
-                <p className="text-muted-foreground">
-                  Tell us about your project and we'll get back to you with a
-                  custom proposal.
+                <p className="text-sm text-muted-foreground">
+                  Enough detail to understand scope, timeline, and goals is perfect.
                 </p>
               </CardHeader>
+
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div>
                       <Label htmlFor="name">Name *</Label>
                       <Input
@@ -199,7 +204,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="mt-1"
+                        className="mt-2 border-border/70 bg-background/35"
                         placeholder="Your full name"
                       />
                     </div>
@@ -212,8 +217,8 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="mt-1"
-                        placeholder="your.email@company.com"
+                        className="mt-2 border-border/70 bg-background/35"
+                        placeholder="you@company.com"
                       />
                     </div>
                   </div>
@@ -225,12 +230,12 @@ const Contact = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="mt-1"
-                      placeholder="Your company name"
+                      className="mt-2 border-border/70 bg-background/35"
+                      placeholder="Company or brand"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div>
                       <Label htmlFor="projectType">Project Type</Label>
                       <Input
@@ -238,60 +243,56 @@ const Contact = () => {
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleChange}
-                        className="mt-1"
-                        placeholder="e.g., Business Website, Web App, CRM"
+                        className="mt-2 border-border/70 bg-background/35"
+                        placeholder="Website, app, platform"
                         list="project-types"
                       />
                       <datalist id="project-types">
                         <option value="Business Website" />
                         <option value="Web Application" />
                         <option value="E-Commerce Platform" />
-                        <option value="CRM System" />
-                        <option value="Management System" />
-                        <option value="Mobile App" />
-                        <option value="AI/ML Solution" />
+                        <option value="Operations Platform" />
+                        <option value="CRM or Internal Tool" />
                         <option value="Other" />
                       </datalist>
                     </div>
                     <div>
-                      <Label htmlFor="budget">Project Budget</Label>
+                      <Label htmlFor="budget">Budget</Label>
                       <Input
                         id="budget"
                         name="budget"
                         value={formData.budget}
                         onChange={handleChange}
-                        className="mt-1"
-                        placeholder="e.g., R2,000 - R3,500"
+                        className="mt-2 border-border/70 bg-background/35"
+                        placeholder="Estimated budget range"
                         list="budget-ranges"
                       />
                       <datalist id="budget-ranges">
-                        <option value="R2,000 - R3,500" />
-                        <option value="R3,600 - R5,000" />
-                        <option value="R5,000 - R7,500" />
-                        <option value="R8,000 - R12,000" />
-                        <option value="R12,000+ (Tailored)" />
+                        <option value="R2,500 - R5,000" />
+                        <option value="R5,000 - R12,000" />
+                        <option value="R12,000 - R25,000" />
+                        <option value="R25,000+" />
                       </datalist>
                     </div>
                   </div>
 
                   <div>
-                    <Label htmlFor="timeline">Timeline</Label>
+                    <Label htmlFor="timeline">Desired Timeline</Label>
                     <Input
                       id="timeline"
                       name="timeline"
                       value={formData.timeline}
                       onChange={handleChange}
-                      className="mt-1"
-                      placeholder="e.g., Within 1 month, 2-3 months"
+                      className="mt-2 border-border/70 bg-background/35"
+                      placeholder="ASAP, 1 month, 2-3 months"
                       list="timelines"
                     />
                     <datalist id="timelines">
-                      <option value="ASAP (Rush job)" />
+                      <option value="ASAP" />
                       <option value="Within 1 month" />
                       <option value="2-3 months" />
-                      <option value="3-6 months" />
-                      <option value="6+ months" />
-                      <option value="Flexible timeline" />
+                      <option value="3+ months" />
+                      <option value="Flexible" />
                     </datalist>
                   </div>
 
@@ -303,31 +304,38 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="mt-1 min-h-32"
-                      placeholder="Describe your business needs and challenges. What problems are you trying to solve? What goals do you want to achieve? Include any specific features or requirements..."
+                      className="mt-2 min-h-32 border-border/70 bg-background/35"
+                      placeholder="What are you trying to build? What business outcomes matter most?"
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full"
-                    size="lg"
-                    variant="cta"
-                    disabled={isSubmitting}
-                  >
+                  <Button type="submit" className="w-full" size="lg" variant="hero" disabled={isSubmitting}>
                     {isSubmitting ? (
                       "Sending..."
                     ) : (
                       <>
-                        Send Message
-                        <Send className="w-5 h-5 ml-2" />
+                        Send Project Brief
+                        <Send className="h-5 w-5" />
                       </>
                     )}
                   </Button>
+
+                  <p className="text-center text-xs text-muted-foreground">
+                    Prefer a direct conversation?
+                    <a
+                      href="https://wa.me/27715231720"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-1 inline-flex items-center text-primary hover:text-primary-glow"
+                    >
+                      Chat on WhatsApp
+                      <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                    </a>
+                  </p>
                 </form>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
